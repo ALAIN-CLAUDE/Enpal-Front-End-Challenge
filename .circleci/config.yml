@@ -15,7 +15,7 @@ jobs:
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
-            - node_modules
+            - node_modules 
   code-review:
     docker:
       - image: circleci/node:latest
@@ -32,11 +32,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-      - run:
-          name: SFDX Scanner Analysis
-          command: . build/run_sfdx_scanner.sh
-      - store_artifacts:
-          path: sfdxScannerAnalysis.csv
+    
   deploy-code:
     docker:
       - image: circleci/node:latest
