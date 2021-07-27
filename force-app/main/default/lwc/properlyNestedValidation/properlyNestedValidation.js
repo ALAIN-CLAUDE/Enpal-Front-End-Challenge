@@ -44,63 +44,63 @@ export default class ProperlyNestedValidation extends NavigationMixin (Lightning
         }
     }
 
- 
+    submitAction(){
+        var userInput = this.template.querySelector('.userInput');
+        var userInputVal = userInput.value;
+        //var profill = this.CurrentUserProfile.Profile.Name ;
 
- submitAction(){
-     let userInput = this.template.querySelector('.userInput');
-     let userInputVal = userInput.value;
+        let profill =  this.CurrentUserProfile.Profile.Name;
 
-     if( userInputVal !=='properly nested'  && (this.CurrentUserProfile.Profile.Name  !== "Widget Masters" || this.CurrentUserProfile.Profile.Name !== "System Administrator" ))
-         {
-           
-            userInput.setCustomValidity('Profile not Allowed. Widget Value Must be properly nested To Submit');
-            userInput.reportValidity();
-            console.log('userInputVal===> '+ userInputVal);
-            console.log('user profile==> '+ this.CurrentUserProfile.Profile.Name );
-                   
-     }
-     else{
-         if(this.Value){
-        createWidget({Value:this.Value,Name:this.Name})
-        .then(result=>{
+          if (!((profill == "System Administrator" ) || (profill == "Widget Masters"))) {
+              if(userInputVal !== "properly nested"){
+
+                console.log('profile is ==> '+ profill);
+                console.log('profile is not admin or widget');
+                userInput.setCustomValidity('Profile not Allowed. Widget Value Must be properly nested To Submit');
+                userInput.reportValidity();
+
+              }
             
-            this.widgetRecoreId = result.Id;
-            console.log(result.Value);
-            window.console.log('widgetRecoreId ' + this.widgetRecoreId); 
-                
-                    const toastEvent = new ShowToastEvent({
+          } else {
+            console.log('profile is ==> '+profill);
+            console.log('profile is admin or widget ');
+             if(this.Value){
+                 createWidget({Value:this.Value})
+                 .then(result=>{
+                     this.widgetRecoreId = result.Id;
+                     console.log(result.Value);
+                     window.console.log('widgetRecoreId ' + this.widgetRecoreId);const toastEvent = new ShowToastEvent({
                         title:'Success!',
                         message:'Record created successfully',
                         variant:'success'
                       });
                       this.dispatchEvent(toastEvent);
-                  
-          
-     
-              /*Start Navigation*/
-              this[NavigationMixin.Navigate]({
-                type: 'standard__recordPage',
-                attributes: {
-                    recordId: this.widgetRecoreId,
-                    objectApiName: 'Widget__c',
-                    actionName: 'view'
-                },
+
+                      /*Start Navigation*/
+                     this[NavigationMixin.Navigate]({
+                         type: 'standard__recordPage',
+                         attributes: {
+                         recordId: this.widgetRecoreId,
+                         objectApiName: 'Widget__c',
+                         actionName: 'view' },
              });
              /*End Navigation*/
      
-        })
-        .catch(error =>{
-           this.errorMsg=error.message;
-           window.console.log(this.error);
-        });
-     
-     }else{
-         alert('please insert a Widget Value ...!')
-     }
+            })
+            .catch(error =>{
+               this.errorMsg=error.message;
+               window.console.log(this.error);
+            });
+    
+             }else{   
+                 alert('please insert a Widget Value ...!')
+
+             }
+
+          }
+       
     }
-
-
- }
+   
 
 
 }
