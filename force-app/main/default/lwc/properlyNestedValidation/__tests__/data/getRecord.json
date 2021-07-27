@@ -1,0 +1,9 @@
+{
+      "Name": {
+          "value": "Widget A1"
+      },
+      "Value__c": {
+        "Value": "properly nested"
+    }
+  
+}
