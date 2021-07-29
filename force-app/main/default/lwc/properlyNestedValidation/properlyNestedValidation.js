@@ -96,5 +96,4 @@ export default class ProperlyNestedValidation extends NavigationMixin (Lightning
     }
    
 
-
 }
