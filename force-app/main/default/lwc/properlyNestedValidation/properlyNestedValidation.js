@@ -93,7 +93,7 @@ export default class ProperlyNestedValidation extends NavigationMixin (Lightning
             });
     
              }else{   
-                 alert('please insert a Widget Value ...!')
+                 alert('Please insert a Widget Value ...!')
 
              }
 
