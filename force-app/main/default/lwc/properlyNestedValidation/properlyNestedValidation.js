@@ -12,7 +12,7 @@ export default class ProperlyNestedValidation extends NavigationMixin (Lightning
     @track Name;
     @track widgetRecoreId;
     @track errorMsg;
-    @track isButtonDisabled = false; // show button by default
+    @track isButtonDisabled = false; //not used .
     @track CurrentUserProfile;
  
 
@@ -31,13 +31,9 @@ export default class ProperlyNestedValidation extends NavigationMixin (Lightning
  @wire(getUserInfo, {}) 
     userData({ error, data }) {
         if(data) {
-
            // this.AllProfiles = data;
           this.CurrentUserProfile = data ;
-          
-         
-        
-        
+           
         } else if(error) {
             // error handling
             console.error(error.body.message);
@@ -47,7 +43,6 @@ export default class ProperlyNestedValidation extends NavigationMixin (Lightning
     submitAction(){
         var userInput = this.template.querySelector('.userInput');
         var userInputVal = userInput.value;
-        //var profill = this.CurrentUserProfile.Profile.Name ;
 
         let profill =  this.CurrentUserProfile.Profile.Name;
 
@@ -93,11 +88,10 @@ export default class ProperlyNestedValidation extends NavigationMixin (Lightning
             });
     
              }else{   
-                 alert('Please insert a Widget Value ...!')
+                 alert('Please insert a Widget Value ...!');
 
              }
-
-          }
+     }
        
     }
    
