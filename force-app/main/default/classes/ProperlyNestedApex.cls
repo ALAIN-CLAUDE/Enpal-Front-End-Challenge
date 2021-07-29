@@ -3,11 +3,11 @@ public with sharing class ProperlyNestedApex {
     @AuraEnabled(cacheable=true)
     public static Widget__c createWidget( string Value  ){
         Widget__c widgetObj = new Widget__c();
-        
         widgetObj.Value__c = Value;
        
-    if(Value != null){
-      insert widgetObj;
+        if(Value != null){
+
+          insert widgetObj;
     }   
         return widgetObj;
 
@@ -15,7 +15,7 @@ public with sharing class ProperlyNestedApex {
 
 @AuraEnabled(cacheable=true)
 public static user getUserInfo() {
-    String userId = UserInfo.getUserId(); // current user
+    String userId = UserInfo.getUserId(); // current User
     return [SELECT ID, FirstName, LastName, Name, Title, Profile.Name,  Email From    User WHERE ID =: userId LIMIT 1];
 }
 
