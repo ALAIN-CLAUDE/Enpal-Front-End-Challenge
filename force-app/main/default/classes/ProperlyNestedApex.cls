@@ -1,17 +1,15 @@
-public without sharing class ProperlyNestedApex {
+public with sharing class ProperlyNestedApex {
     /*Using multiple parameter in apex  controller */
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static Widget__c createWidget( string Value  ){
         Widget__c widgetObj = new Widget__c();
         
         widgetObj.Value__c = Value;
        
- if(Value != null){
-    insert widgetObj;
- }
-       
+    if(Value != null){
+      insert widgetObj;
+    }   
         return widgetObj;
-
 
 }
 
