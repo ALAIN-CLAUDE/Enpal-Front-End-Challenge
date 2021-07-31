@@ -7,9 +7,9 @@ import getUserInfo from '@salesforce/apex/ProperlyNestedApex.getUserInfo'
 
 
 export default class ProperlyNestedValidation extends NavigationMixin (LightningElement)  {
-    @track Status;
+    @track Status;// NOT USED
     @track Value;
-    @track Name;
+    @track Name;// NOT USED
     @track widgetRecoreId;
     @track errorMsg;
     @track isButtonDisabled = false; //not used .
